@@ -14,6 +14,7 @@ public class Elokuvalista {
     HashMap<String, Elokuva> lista = new HashMap();
     
     public int getListaPituus() {
+        System.out.println("sd");
         return this.lista.size();
     }
     
