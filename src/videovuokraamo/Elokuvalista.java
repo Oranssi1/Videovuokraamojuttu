@@ -35,7 +35,7 @@ public class Elokuvalista {
             lista.remove(leffa);
             System.out.println(leffa + " poistettu.");
         } else {
-            System.out.println("Elokuvaa ei löydy listalta.");
+            System.out.println("Elokuvaa ei listalla.");
         }
     }
     
