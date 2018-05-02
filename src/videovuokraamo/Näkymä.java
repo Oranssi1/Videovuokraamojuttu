@@ -57,7 +57,11 @@ public class Näkymä {
                 controller.poistaLeffalistalta(Nimi);
                 break;
             case "3":
-                System.out.println("KARKKILISÄTOIMINTA");
+                System.out.println("Karkin tuotenimi: ");
+                Nimi = lukija.nextLine();
+                System.out.println("Määrä grammoissa: ");
+                int maara = Integer.parseInt(lukija.nextLine());
+                controller.lisaaKarkkia(Nimi, maara);
                 break;
             case "4":
                 System.out.println("Elokuvan nimi: ");
@@ -68,7 +72,7 @@ public class Näkymä {
                 controller.tulostaLeffalista();
                 break;
             case "6":
-                System.out.println("KARKKILISTATOIMINTA");
+                controller.tulostaKarkit();
                 break;
             case "7":
                 System.out.println("ASIAKASLISTATOIMINTA");

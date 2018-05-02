@@ -13,6 +13,7 @@ public class Kontrolleri {
     private Näkymä näky;
     private Elokuvalista elokuvalista = new Elokuvalista();
     private Asiakaslista asiakaslista = new Asiakaslista();
+    private Karkkilista karkkilista = new Karkkilista();
     
     public Kontrolleri() {
         näky = new Näkymä(this);
@@ -33,6 +34,14 @@ public class Kontrolleri {
     
     public void tulostaLeffalista() {
         elokuvalista.tulostaLista();
+    }
+    
+    public void lisaaKarkkia(String nimi, int maara) {
+        karkkilista.lisääListaan(nimi, maara);
+    }
+    
+    public void tulostaKarkit() {
+        karkkilista.tulostaLista();
     }
     
     public void operoi() {

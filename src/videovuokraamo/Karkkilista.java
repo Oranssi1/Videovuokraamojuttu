@@ -22,7 +22,11 @@ public class Karkkilista {
     }
     
     public void lisääListaan(String nimi, int maara) {
-        this.lista.put(nimi, this.lista.get(nimi) + maara);
+        if (this.lista.containsKey(nimi)) {
+            this.lista.put(nimi, this.lista.get(nimi) + maara);
+        } else {
+            this.lista.put(nimi, maara);   
+        }
     }
     
     public boolean vahennaKarkkia(String nimi, int maara) {
