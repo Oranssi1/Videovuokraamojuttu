@@ -26,6 +26,15 @@ public class Kontrolleri {
         asiakaslista.lisääListaan(nimi.toUpperCase(), asiakas);
     }
     
+    public void tulostaAsiakkaanvuokratut(String nimi) {
+        nimi = nimi.toUpperCase();
+        if (asiakaslista.lista.containsKey(nimi)) {
+            asiakaslista.lista.get(nimi).tulostaVuokratut();
+        } else {
+            System.out.println("Asiakasta ei löydy listalta.");
+        }
+    }
+    
     public void tulostaAsiakkaat() {
         asiakaslista.tulostaLista();
     }
@@ -47,7 +56,7 @@ public class Kontrolleri {
                     System.out.println("Asiakas on jo vuokrannut elokuvan.");            
                 } else {
 
-                    if (elokuvalista.lista.get(leffa).getLukumaara(levylaatu) < 0) {
+                    if (elokuvalista.lista.get(leffa).getLukumaara(levylaatu) <= 0) {
                         System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
                     } else {
                         elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);

@@ -49,8 +49,12 @@ public class Näkymä {
                 controller.lisaaAsiakas(lukija.nextLine());
                 break;
             case "6":
-                controller.tulostaAsiakkaat();
+                System.out.println("Anna asiakkaan nimi: ");
+                controller.tulostaAsiakkaanvuokratut(lukija.nextLine());
                 break;
+            case "7":
+                controller.tulostaAsiakkaat();
+                break;                
             case "0":
                 break;
         }

@@ -59,8 +59,13 @@ public class Asiakas {
     }
     
     public void tulostaVuokratut() {
-        for (int i = 0;this.vuokralla.size() > i;i++) {
-            System.out.println(this.vuokralla);
+        if (vuokralla.size() > 0) {
+            System.out.println("Vuokralla:");
+            for (int i = 0;this.vuokralla.size() > i;i++) {
+                System.out.println((i+1) + ". " + this.vuokralla.get(i));
+            }
+        } else {
+            System.out.println("Asiakkaalla ei vuokrauksia.");
         }
     }
 }
