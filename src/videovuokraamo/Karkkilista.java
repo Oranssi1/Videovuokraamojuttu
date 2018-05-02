@@ -39,11 +39,15 @@ public class Karkkilista {
     }
     
     public void tulostaLista() {
-        Iterator iteraattori = this.lista.keySet().iterator();
+        if (this.lista.size() > 0) {
+            Iterator iteraattori = this.lista.keySet().iterator();
 
-        while (iteraattori.hasNext()) {
-            String nimi = iteraattori.next().toString();
-            System.out.println(">" + nimi + ", Määrä: " + this.lista.get(nimi) + " grammaa.");
+            while (iteraattori.hasNext()) {
+                String nimi = iteraattori.next().toString();
+                System.out.println(">" + nimi + ", Määrä: " + this.lista.get(nimi) + " grammaa.");
+            }
+        } else {
+            System.out.println("Kaupassa ei ole karkkia.");
         }
     }
 }

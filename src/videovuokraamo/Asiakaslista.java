@@ -42,11 +42,15 @@ public class Asiakaslista {
     }
     
     public void tulostaLista() {
-        Iterator iteraattori = this.lista.keySet().iterator();
+        if (this.lista.size() > 0) {
+            Iterator iteraattori = this.lista.keySet().iterator();
 
-        while (iteraattori.hasNext()) {
-            String nimi = iteraattori.next().toString();
-            System.out.println("asiakas : \"" + lista.get(nimi).getNimi() + "\" Kanta-asiakaspisteet: " + lista.get(nimi).getPisteet());
+            while (iteraattori.hasNext()) {
+                String nimi = iteraattori.next().toString();
+                System.out.println("asiakas : \"" + lista.get(nimi).getNimi() + "\" Kanta-asiakaspisteet: " + lista.get(nimi).getPisteet());
+            }
+        } else {
+            System.out.println("Järjestelmässä ei ole asiakkaita.");
         }
     }
 }

@@ -40,12 +40,17 @@ public class Elokuvalista {
     }
     
     public void tulostaLista() {
-        Iterator iteraattori = this.lista.keySet().iterator();
+        if (this.lista.size() > 0) {
+            Iterator iteraattori = this.lista.keySet().iterator();
 
-        while (iteraattori.hasNext()) {
-            String nimi = iteraattori.next().toString();
-            System.out.println(">" + nimi + " /Julkaisuvuosi: " + lista.get(nimi).getVuosi() + 
-                    "/ Hyllyssä: *Blu-ray* - " + lista.get(nimi).getLukumaara(1) + " *DVD* - " + lista.get(nimi).getLukumaara(2));
+            while (iteraattori.hasNext()) {
+                String nimi = iteraattori.next().toString();
+                System.out.println(">" + nimi + " /Julkaisuvuosi: " + lista.get(nimi).getVuosi() + 
+                        "/ Hyllyssä: *Blu-ray* - " + lista.get(nimi).getLukumaara(1) + " *DVD* - " + lista.get(nimi).getLukumaara(2));
+            }        
+        } else {
+            System.out.println("Hyllyssä ei ole elokuvia.");
         }
+
     }
 }
