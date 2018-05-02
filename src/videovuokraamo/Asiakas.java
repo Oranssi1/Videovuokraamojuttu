@@ -16,6 +16,8 @@ public class Asiakas {
     
     public Asiakas(String nimi) {
         this.nimi = nimi;
+        vuokralla = new ArrayList<String>();
+//        this.vuokralla.add("asd");
     }
 
     public String getNimi() {

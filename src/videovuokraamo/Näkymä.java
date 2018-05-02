@@ -83,7 +83,7 @@ public class Näkymä {
             case "4":
                 System.out.println("Elokuvan nimi: ");
                 Nimi = lukija.nextLine();
-                controller.elokuvanTiedot(Nimi);
+                System.out.println(controller.elokuvanTiedot(Nimi));
                 break;
             case "5":
                 controller.tulostaLeffalista();

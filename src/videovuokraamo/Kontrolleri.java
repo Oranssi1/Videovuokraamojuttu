@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package videovuokraamo;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -21,8 +22,8 @@ public class Kontrolleri {
     }
     
     public void lisaaAsiakas(String nimi) {
-        Asiakas asiakas = new Asiakas(nimi);
-        asiakaslista.lisääListaan(nimi, asiakas);
+        Asiakas asiakas = new Asiakas(nimi.toUpperCase());
+        asiakaslista.lisääListaan(nimi.toUpperCase(), asiakas);
     }
     
     public void tulostaAsiakkaat() {
@@ -31,6 +32,8 @@ public class Kontrolleri {
     
     public void vuokraaLeffa(String asiakas, String leffa, int levylaatu) {
         HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
+        asiakas = asiakas.toUpperCase();
+        leffa = leffa.toUpperCase();
         if (!asiakkaat.containsKey(asiakas)) {
             System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
             this.lisaaAsiakas(asiakas);
@@ -39,30 +42,33 @@ public class Kontrolleri {
         
         if (!elokuvalista.lista.containsKey(leffa)) {
             System.out.println("Elokuvaa ei listalla");
-        }else if (vuokraaja.getVuokralla().contains(leffa)) {
-            System.out.println("Asiakas on jo vuokrannut elokuvan.");            
         } else {
-            
-            if (elokuvalista.lista.get(leffa).getLukumaara(levylaatu) < 0) {
-                System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
-            } else {
-                elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);
-                vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi());
-                System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
-            }
+                if (vuokraaja.getVuokralla().contains(leffa)) {
+                    System.out.println("Asiakas on jo vuokrannut elokuvan.");            
+                } else {
+
+                    if (elokuvalista.lista.get(leffa).getLukumaara(levylaatu) < 0) {
+                        System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
+                    } else {
+                        elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);
+                        vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi());
+                        System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
+                    }
+                }
         }
     }
     
     public void lisääLeffalistaan(String nimi, int vuosi){
-        Elokuva leffa = new Elokuva(nimi,vuosi);
-        elokuvalista.lisääListaan(nimi, leffa);
+        Elokuva leffa = new Elokuva(nimi.toUpperCase(),vuosi);
+        elokuvalista.lisääListaan(nimi.toUpperCase(), leffa);
     }
     
     public void poistaLeffalistalta(String nimi) {
-        elokuvalista.poistaListalta(nimi);
+        elokuvalista.poistaListalta(nimi.toUpperCase());
     }
     
     public String elokuvanTiedot(String nimi) {
+        nimi = nimi.toUpperCase();
         return this.elokuvalista.getNimi(nimi).toString();
     }
     
@@ -71,7 +77,7 @@ public class Kontrolleri {
     }
     
     public void lisaaKarkkia(String nimi, int maara) {
-        karkkilista.lisääListaan(nimi, maara);
+        karkkilista.lisääListaan(nimi.toUpperCase(), maara);
     }
     
     public void tulostaKarkit() {
@@ -79,6 +85,11 @@ public class Kontrolleri {
     }
     
     public void operoi() {
+        Elokuva kane = new Elokuva("CITIZEN KANE", 1941);
+        elokuvalista.lisääListaan("CITIZEN KANE", kane);
+        Elokuva matrix = new Elokuva("MATRIX", 1999);
+        elokuvalista.lisääListaan("MATRIX", matrix);
+        
         while(true) {
             näky.valinta();
         }

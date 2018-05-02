@@ -12,11 +12,16 @@ package videovuokraamo;
 public class Elokuva {
     private String nimi;
     private int vuosi;
-    private int BDlukumaara = 4;
-    private int DVDlukumaara = 4;
+    private int BDlukumaara = 1;
+    private int DVDlukumaara = 1;
     private double arvosana = 1;
     private int montakoArvosanaa = 1;
     
+    public Elokuva(String nimi, int vuosi) {
+        this.nimi = nimi.toUpperCase();
+        this.vuosi = vuosi;
+    }
+        
     public int getLukumaara(int levylaji) {
         if (levylaji == 1) {
             return BDlukumaara;
@@ -47,11 +52,6 @@ public class Elokuva {
         } else {
             this.DVDlukumaara = this.DVDlukumaara - maara;
         }
-    }
-    
-    public Elokuva(String nimi, int vuosi) {
-        this.nimi = nimi;
-        this.vuosi = vuosi;
     }
 
     public String getNimi() {
