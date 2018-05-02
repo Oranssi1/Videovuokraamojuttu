@@ -12,8 +12,8 @@ package videovuokraamo;
 public class Elokuva {
     private String nimi;
     private int vuosi;
-    private int BDlukumaara = 0;
-    private int DVDlukumaara = 0;
+    private int BDlukumaara = 4;
+    private int DVDlukumaara = 4;
     private double arvosana = 1;
     private int montakoArvosanaa = 1;
     

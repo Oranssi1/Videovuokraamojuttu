@@ -29,7 +29,7 @@ public class Kontrolleri {
         asiakaslista.tulostaLista();
     }
     
-    public void vuokraaLeffa(String asiakas, Elokuva leffa, int levylaatu) {
+    public void vuokraaLeffa(String asiakas, String leffa, int levylaatu) {
         HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
         if (!asiakkaat.containsKey(asiakas)) {
             System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
@@ -37,16 +37,18 @@ public class Kontrolleri {
         }
         Asiakas vuokraaja = asiakkaat.get(asiakas);
         
-        if (vuokraaja.getVuokralla().contains(leffa.getNimi())) {
-            System.out.println("Asiakas on jo vuokrannut elokuvan.");
+        if (!elokuvalista.lista.containsKey(leffa)) {
+            System.out.println("Elokuvaa ei listalla");
+        }else if (vuokraaja.getVuokralla().contains(leffa)) {
+            System.out.println("Asiakas on jo vuokrannut elokuvan.");            
         } else {
             
-            if (leffa.getLukumaara(levylaatu) < 0) {
+            if (elokuvalista.lista.get(leffa).getLukumaara(levylaatu) < 0) {
                 System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
             } else {
-                leffa.vahennaLeffoja(levylaatu, 1);
-                vuokraaja.vuokraaElokuva(leffa.getNimi());
-                System.out.println("Elokuva " + leffa.getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
+                elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);
+                vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi());
+                System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
             }
         }
     }

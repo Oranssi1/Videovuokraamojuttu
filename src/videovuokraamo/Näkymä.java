@@ -22,10 +22,18 @@ public class Näkymä {
     public void valintaAsiakas() {
         tekstit.vaihtoehdot(1);
         lukija.nextLine();
-        String nimi;
+        String animi;
+        String enimi;
+        int levylaatu;
         switch (lukija.nextLine()) {
             case "1":
-                System.out.println("VUOKRATOIMINTA");
+                System.out.println("Anna asiakkaan nimi: ");
+                animi = lukija.nextLine();
+                System.out.println("Anna elokuvan nimi: ");
+                enimi = lukija.nextLine();
+                System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
+                levylaatu = Integer.parseInt(lukija.nextLine());
+                controller.vuokraaLeffa(animi, enimi, levylaatu);
                 break;
             case "2":
                 System.out.println("PALAUTUSTOIMINTA");
