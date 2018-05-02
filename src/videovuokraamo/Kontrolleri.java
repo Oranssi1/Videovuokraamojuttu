@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package videovuokraamo;
+import java.util.HashMap;
 
 /**
  *
@@ -19,6 +20,37 @@ public class Kontrolleri {
         näky = new Näkymä(this);
     }
     
+    public void lisaaAsiakas(String nimi) {
+        Asiakas asiakas = new Asiakas(nimi);
+        asiakaslista.lisääListaan(nimi, asiakas);
+    }
+    
+    public void tulostaAsiakkaat() {
+        asiakaslista.tulostaLista();
+    }
+    
+    public void vuokraaLeffa(String asiakas, Elokuva leffa, int levylaatu) {
+        HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
+        if (!asiakkaat.containsKey(asiakas)) {
+            System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
+            this.lisaaAsiakas(asiakas);
+        }
+        Asiakas vuokraaja = asiakkaat.get(asiakas);
+        
+        if (vuokraaja.getVuokralla().contains(leffa.getNimi())) {
+            System.out.println("Asiakas on jo vuokrannut elokuvan.");
+        } else {
+            
+            if (leffa.getLukumaara(levylaatu) < 0) {
+                System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
+            } else {
+                leffa.vahennaLeffoja(levylaatu, 1);
+                vuokraaja.vuokraaElokuva(leffa.getNimi());
+                System.out.println("Elokuva " + leffa.getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
+            }
+        }
+    }
+    
     public void lisääLeffalistaan(String nimi, int vuosi){
         Elokuva leffa = new Elokuva(nimi,vuosi);
         elokuvalista.lisääListaan(nimi, leffa);
@@ -29,7 +61,7 @@ public class Kontrolleri {
     }
     
     public String elokuvanTiedot(String nimi) {
-        return this.elokuvalista.getElokuva(nimi).toString();
+        return this.elokuvalista.getNimi(nimi).toString();
     }
     
     public void tulostaLeffalista() {

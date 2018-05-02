@@ -21,6 +21,8 @@ public class Näkymä {
     
     public void valintaAsiakas() {
         tekstit.vaihtoehdot(1);
+        lukija.nextLine();
+        String nimi;
         switch (lukija.nextLine()) {
             case "1":
                 System.out.println("VUOKRATOIMINTA");
@@ -33,6 +35,13 @@ public class Näkymä {
                 break;
             case "4":
                 System.out.println("KANTA-ASIAKASTOIMINTA");
+                break;
+            case "5":
+                System.out.println("Anna asiakkaan nimi: ");
+                controller.lisaaAsiakas(lukija.nextLine());
+                break;
+            case "6":
+                controller.tulostaAsiakkaat();
                 break;
             case "0":
                 break;
@@ -73,9 +82,6 @@ public class Näkymä {
                 break;
             case "6":
                 controller.tulostaKarkit();
-                break;
-            case "7":
-                System.out.println("ASIAKASLISTATOIMINTA");
                 break;
             case "0":
                 break;

@@ -17,6 +17,10 @@ public class Elokuvalista {
         return this.lista.size();
     }
     
+    public Elokuva getNimi(String nimi) {
+        return this.lista.get(nimi);
+    }
+    
     public Elokuva getElokuva(String nimi) {
         return this.lista.get(nimi);
     }

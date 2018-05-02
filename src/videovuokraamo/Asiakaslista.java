@@ -41,6 +41,10 @@ public class Asiakaslista {
         }
     }
     
+    public HashMap getLista() {
+        return this.lista;
+    }
+    
     public void tulostaLista() {
         if (this.lista.size() > 0) {
             Iterator iteraattori = this.lista.keySet().iterator();
