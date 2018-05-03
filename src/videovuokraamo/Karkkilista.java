@@ -30,6 +30,9 @@ public class Karkkilista {
     }
     
     public boolean vahennaKarkkia(String nimi, int maara) {
+        System.out.println(this.lista.get(nimi));
+        System.out.println(this.lista.get(nimi) - maara);
+        System.out.println("TOITOITOI");
         if (lista.containsKey(nimi) && lista.get(nimi) >= maara) {
             this.lista.put(nimi, this.lista.get(nimi) - maara);
             return true;

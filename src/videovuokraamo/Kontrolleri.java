@@ -106,6 +106,10 @@ public class Kontrolleri {
         karkkilista.lisääListaan(nimi.toUpperCase(), maara);
     }
     
+    public void myyKarkkia(String asiakas, String karkki, int maara) {
+        this.karkkilista.vahennaKarkkia(karkki, maara);
+    }
+    
     public void tulostaKarkit() {
         karkkilista.tulostaLista();
     }

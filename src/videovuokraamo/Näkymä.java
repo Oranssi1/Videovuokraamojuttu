@@ -27,6 +27,7 @@ public class Näkymä {
         int levylaatu;
         switch (lukija.nextLine()) {
             case "1":
+                //Elokuvan vuokraamistoiminta
                 System.out.println("Anna asiakkaan nimi: ");
                 animi = lukija.nextLine();
                 System.out.println("Anna elokuvan nimi: ");
@@ -36,7 +37,7 @@ public class Näkymä {
                 controller.vuokraaLeffa(animi, enimi, levylaatu);
                 break;
             case "2":
-                System.out.println("PALAUTUSTOIMINTA");
+                //Elokuvan palautustoiminta
                 System.out.println("Anna asiakkaan nimi: ");
                 animi = lukija.nextLine().toUpperCase();
                 if (!controller.getAsiakaslista().containsKey(animi)) {
@@ -49,7 +50,15 @@ public class Näkymä {
                 }
                 break;
             case "3":
-                System.out.println("OOSTAKARKKIATOIMINTA");
+                //Karkin ostamistoiminta
+                System.out.println("Anna asiakkaan nimi:");
+                animi = lukija.nextLine().toUpperCase();
+                controller.tulostaKarkit();
+                System.out.println("Mitä karkkia asiakas ostaa?");
+                enimi = lukija.nextLine().toUpperCase();
+                System.out.println("Kuinka paljon? (grammoissa)");
+                int maara = Integer.parseInt(lukija.nextLine());
+                controller.myyKarkkia(animi, enimi, maara);
                 break;
             case "4":
                 System.out.println("KANTA-ASIAKASTOIMINTA");
