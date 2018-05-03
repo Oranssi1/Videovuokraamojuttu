@@ -29,9 +29,9 @@ public class Näkymä {
             case "1":
                 //Elokuvan vuokraamistoiminta
                 System.out.println("Anna asiakkaan nimi: ");
-                animi = lukija.nextLine();
+                animi = lukija.nextLine().toUpperCase();
                 System.out.println("Anna elokuvan nimi: ");
-                enimi = lukija.nextLine();
+                enimi = lukija.nextLine().toUpperCase();
                 System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
                 levylaatu = Integer.parseInt(lukija.nextLine());
                 controller.vuokraaLeffa(animi, enimi, levylaatu);
@@ -45,7 +45,7 @@ public class Näkymä {
                 } else {
                     controller.tulostaAsiakkaanvuokratut(animi);
                     System.out.println("Anna elokuvan nimi: ");
-                    enimi = lukija.nextLine();
+                    enimi = lukija.nextLine().toUpperCase();
                     controller.palautaLeffa(animi, enimi);
                 }
                 break;
@@ -61,20 +61,19 @@ public class Näkymä {
                 controller.myyKarkkia(animi, enimi, maara);
                 break;
             case "4":
-                //Kanta-asiakastoiminta
-                break;
-            case "5":
                 //Asiakkaan lisäys
                 System.out.println("Anna asiakkaan nimi: ");
-                controller.lisaaAsiakas(lukija.nextLine());
+                controller.lisaaAsiakas(lukija.nextLine().toUpperCase());
+                break;
+            case "5":
+                //Tulostaa asiakkaan vuokraukset ja kanta-asiakaspisteet listana
+                System.out.println("Anna asiakkaan nimi: ");
+                animi = lukija.nextLine().toUpperCase();
+                controller.tulostaAsiakkaanvuokratut(animi);
+                controller.tulostaKantapisteet(animi);
                 break;
             case "6":
-                //Tulostaa asiakkaan vuokraukset listana
-                System.out.println("Anna asiakkaan nimi: ");
-                controller.tulostaAsiakkaanvuokratut(lukija.nextLine());
-                break;
-            case "7":
-                //Tulostaa asiakkaat listana
+                //Tulostaa kaikkien asiakkaiden tiedot listana
                 controller.tulostaAsiakkaat();
                 break;                
             case "0":
@@ -92,7 +91,7 @@ public class Näkymä {
             case "1":
                 //Lisää nimikkeen elokuvalistaan
                 System.out.print("Elokuvan nimi: ");
-                Nimi = lukija.nextLine();
+                Nimi = lukija.nextLine().toUpperCase();
                 System.out.print("Elokuvan julkaisuvuosi: ");
                 int vuosi = Integer.parseInt(lukija.nextLine());
                 controller.lisääLeffalistaan(Nimi, vuosi);
@@ -100,13 +99,13 @@ public class Näkymä {
             case "2":
                 //Poistaa nimikkeen elokuvalistasta
                 System.out.println("Elokuvan nimi: ");
-                Nimi = lukija.nextLine();
+                Nimi = lukija.nextLine().toUpperCase();
                 controller.poistaLeffalistalta(Nimi);
                 break;
             case "3":
                 //Lisää karkityypin karkkihyllyyn
                 System.out.println("Karkin tuotenimi: ");
-                Nimi = lukija.nextLine();
+                Nimi = lukija.nextLine().toUpperCase();
                 System.out.println("Määrä grammoissa: ");
                 int maara = Integer.parseInt(lukija.nextLine());
                 controller.lisaaKarkkia(Nimi, maara);
@@ -114,7 +113,7 @@ public class Näkymä {
             case "4":
                 //Tulostaa yhden elokuvan tiedot
                 System.out.println("Elokuvan nimi: ");
-                Nimi = lukija.nextLine();
+                Nimi = lukija.nextLine().toUpperCase();
                 System.out.println(controller.elokuvanTiedot(Nimi));
                 break;
             case "5":
@@ -138,6 +137,7 @@ public class Näkymä {
         do {
             tekstit.vaihtoehdot(0);
             valinta = lukija.nextInt();
+            System.out.println("");
         } while (valinta != 1 && valinta != 2);
         
         if (valinta ==1 ) {
@@ -147,6 +147,5 @@ public class Näkymä {
             //Katalogimenu
             valintaKatalogi();
         }
-        System.out.println("");
     }
 }

@@ -24,8 +24,8 @@ public class Teksti {
                 break;
             case 1:
                 System.out.println("1. Vuokraa\n2. Palauta\n3. Osta karkkia\n"
-                    + "4. Kanta-asiakaspisteet\n5. Lisää asiakas\n6. Asiakkaan tiedot\n"
-                        + "7. Lista asiakkaista\n0. Alkuun");    
+                    + "4. Lisää asiakas\n5. Asiakkaan tiedot\n"
+                        + "6. Lista asiakkaista\n0. Alkuun");    
                 break;
             case 2:
                 System.out.println("1. Lisää elokuva\n2. Poista elokuva\n"

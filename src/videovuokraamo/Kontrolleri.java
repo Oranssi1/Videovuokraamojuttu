@@ -22,12 +22,11 @@ public class Kontrolleri {
     }
     
     public void lisaaAsiakas(String nimi) {
-        Asiakas asiakas = new Asiakas(nimi.toUpperCase());
-        asiakaslista.lisääListaan(nimi.toUpperCase(), asiakas);
+        Asiakas asiakas = new Asiakas(nimi);
+        asiakaslista.lisääListaan(nimi, asiakas);
     }
     
     public void tulostaAsiakkaanvuokratut(String nimi) {
-        nimi = nimi.toUpperCase();
         if (asiakaslista.lista.containsKey(nimi)) {
             asiakaslista.lista.get(nimi).tulostaVuokratut();
         } else {
@@ -39,10 +38,14 @@ public class Kontrolleri {
         asiakaslista.tulostaLista();
     }
     
+    public void tulostaKantapisteet(String asiakas) {
+        Asiakas vuokraaja = (Asiakas) (asiakaslista.getLista()).get(asiakas);
+        int pisteet = vuokraaja.getPisteet();
+        System.out.println("Kanta-asiakaspisteitä: " + pisteet + " pistettä.");
+    }
+    
     public void vuokraaLeffa(String asiakas, String leffa, int levylaatu) {
         HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
-        asiakas = asiakas.toUpperCase();
-        leffa = leffa.toUpperCase();
         if (!asiakkaat.containsKey(asiakas)) {
             System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
             this.lisaaAsiakas(asiakas);
@@ -64,13 +67,18 @@ public class Kontrolleri {
                         vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi(),levylaatu);
                         System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
                     }
+                    if (vuokraaja.getPisteet() > 300) {
+                        System.out.println("Asiakas saa 5 euroa alennusta 300 kanta-asiakaspisteellään!");
+                        vuokraaja.vahennaPisteet(300);
+                    } else {
+                        System.out.println("Asiakas ansainnut 100 kanta-asiakaspistettä.");
+                        vuokraaja.lisaaPisteet(100);
+                    }
                 }
         }
     }
     
     public void palautaLeffa(String asiakas, String leffa) {
-        leffa = leffa.toUpperCase();
-        asiakas = asiakas.toUpperCase();
         Asiakas vuokraaja = asiakaslista.lista.get(asiakas);
         if (!vuokraaja.getVuokralla().containsKey(leffa)) {
             System.out.println("Asiakkaalla ei ole vuokrassa tätä elokuvaa.");
@@ -82,16 +90,15 @@ public class Kontrolleri {
     }
     
     public void lisääLeffalistaan(String nimi, int vuosi){
-        Elokuva leffa = new Elokuva(nimi.toUpperCase(),vuosi);
-        elokuvalista.lisääListaan(nimi.toUpperCase(), leffa);
+        Elokuva leffa = new Elokuva(nimi,vuosi);
+        elokuvalista.lisääListaan(nimi, leffa);
     }
     
     public void poistaLeffalistalta(String nimi) {
-        elokuvalista.poistaListalta(nimi.toUpperCase());
+        elokuvalista.poistaListalta(nimi);
     }
     
     public String elokuvanTiedot(String nimi) {
-        nimi = nimi.toUpperCase();
         return this.elokuvalista.getNimi(nimi).toString();
     }
     
@@ -104,18 +111,20 @@ public class Kontrolleri {
     }
     
     public void lisaaKarkkia(String nimi, int maara) {
-        karkkilista.lisääListaan(nimi.toUpperCase(), maara);
+        karkkilista.lisääListaan(nimi, maara);
     }
     
     public void myyKarkkia(String asiakas, String karkki, int maara) {
-        HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
-        asiakas = asiakas.toUpperCase();
+        HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();;
         if (!asiakkaat.containsKey(asiakas)) {
             System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
             this.lisaaAsiakas(asiakas);
             System.out.println("");
         }
+        Asiakas ostaja = asiakaslista.getAsiakas(asiakas);
         this.karkkilista.vahennaKarkkia(karkki, maara);
+        ostaja.lisaaPisteet(maara/2);
+        System.out.println("Myynti suoritettu. \nAsiakas ansaitsi " + (maara/2) + " kanta-asiakaspistettä.");
     }
     
     public void tulostaKarkit() {

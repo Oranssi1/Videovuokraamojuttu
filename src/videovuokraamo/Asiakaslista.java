@@ -51,7 +51,7 @@ public class Asiakaslista {
 
             while (iteraattori.hasNext()) {
                 String nimi = iteraattori.next().toString();
-                System.out.println("asiakas : \"" + lista.get(nimi).getNimi() + "\" Kanta-asiakaspisteet: " + lista.get(nimi).getPisteet());
+                System.out.println("Asiakas: \"" + lista.get(nimi).getNimi() + "\" Kanta-asiakaspisteet: " + lista.get(nimi).getPisteet());
             }
         } else {
             System.out.println("Järjestelmässä ei ole asiakkaita.");

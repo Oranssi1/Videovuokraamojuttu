@@ -27,11 +27,11 @@ public class Asiakas {
     }
 
     public int getPisteet() {
-        return pisteet;
+        return this.pisteet;
     }
     
     public void lisaaPisteet(int maara) {
-        this.pisteet = this.pisteet + maara;
+        this.pisteet = (this.pisteet + maara);
     }
     
     public void vahennaPisteet(int maara) {
@@ -63,12 +63,14 @@ public class Asiakas {
     public void tulostaVuokratut() {
         if (vuokralla.size() > 0) {
             System.out.println("Vuokralla:");
-            for (int i = 0;this.vuokralla.size() > i;i++) {
+//            for (int i = 0;this.vuokralla.size() > i;i++) {
                 Set<String> keys = vuokralla.keySet();
+                int i = 1;
                 for (String key : keys) {
-                    System.out.println((i+1) + ". " + key);
+                    System.out.println((i) + ". " + key);
+                    i++;
                 }
-            }
+//            }
         } else {
             System.out.println("Asiakkaalla ei vuokrauksia.");
         }
