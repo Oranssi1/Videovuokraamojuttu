@@ -43,8 +43,13 @@ public class Asiakas {
             return false;
         } else {
             this.vuokralla.put(elokuva, levylaatu);
+            System.out.println(vuokralla);
             return true;
         }
+    }
+    
+    public int levylaatu(String elokuva) {
+        return this.vuokralla.get(elokuva);
     }
     
     public void palautaElokuva(String elokuva) {

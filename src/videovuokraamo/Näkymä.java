@@ -68,6 +68,7 @@ public class Näkymä {
             case "0":
                 break;
         }
+        System.out.println("");
     }
 
     public void valintaKatalogi() {
@@ -108,6 +109,7 @@ public class Näkymä {
             case "0":
                 break;
         }
+        System.out.println("");
     }
     
     public void valinta() {
@@ -123,5 +125,6 @@ public class Näkymä {
         } else if (valinta == 2) {
             valintaKatalogi();
         }
+        System.out.println("");
     }
 }
