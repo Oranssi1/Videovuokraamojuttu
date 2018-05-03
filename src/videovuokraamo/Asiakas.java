@@ -5,6 +5,8 @@
  */
 package videovuokraamo;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 /**
  *
  * @author Yasaburo
@@ -12,11 +14,11 @@ import java.util.ArrayList;
 public class Asiakas {
     final private String nimi;
     private int pisteet = 0;
-    private ArrayList<String> vuokralla;
+    private HashMap<String, Integer> vuokralla;
     
     public Asiakas(String nimi) {
         this.nimi = nimi;
-        vuokralla = new ArrayList<String>();
+        vuokralla = new HashMap<String, Integer>();
 //        this.vuokralla.add("asd");
     }
 
@@ -36,25 +38,20 @@ public class Asiakas {
         this.pisteet = this.pisteet - maara;
     }
     
-    public boolean vuokraaElokuva(String elokuva) {
-        if (this.vuokralla.contains(elokuva)) {
+    public boolean vuokraaElokuva(String elokuva, int levylaatu) {
+        if (this.vuokralla.containsKey(elokuva)) {
             return false;
         } else {
-            this.vuokralla.add(elokuva);
+            this.vuokralla.put(elokuva, levylaatu);
             return true;
         }
     }
     
-    public boolean palautaElokuva(String elokuva) {
-        if (!this.vuokralla.contains(elokuva)) {
-            return false;
-        } else {
-            this.vuokralla.remove(elokuva);
-            return true;
-        }
+    public void palautaElokuva(String elokuva) {
+        this.vuokralla.remove(elokuva);
     }
 
-    public ArrayList<String> getVuokralla() {
+    public HashMap<String,Integer> getVuokralla() {
         return vuokralla;
     }
     
@@ -62,7 +59,10 @@ public class Asiakas {
         if (vuokralla.size() > 0) {
             System.out.println("Vuokralla:");
             for (int i = 0;this.vuokralla.size() > i;i++) {
-                System.out.println((i+1) + ". " + this.vuokralla.get(i));
+                Set<String> keys = vuokralla.keySet();
+                for (String key : keys) {
+                    System.out.println((i+1) + ". " + key);
+                }
             }
         } else {
             System.out.println("Asiakkaalla ei vuokrauksia.");

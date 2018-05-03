@@ -37,6 +37,16 @@ public class Näkymä {
                 break;
             case "2":
                 System.out.println("PALAUTUSTOIMINTA");
+                System.out.println("Anna asiakkaan nimi: ");
+                animi = lukija.nextLine().toUpperCase();
+                if (!controller.getAsiakaslista().containsKey(animi)) {
+                    System.out.println("Asiakasta ei ole järjestelmässä.");
+                } else {
+                    controller.tulostaAsiakkaanvuokratut(animi);
+                    System.out.println("Anna elokuvan nimi: ");
+                    enimi = lukija.nextLine();
+                    controller.palautaLeffa(animi, enimi);
+                }
                 break;
             case "3":
                 System.out.println("OOSTAKARKKIATOIMINTA");

@@ -52,7 +52,7 @@ public class Kontrolleri {
         if (!elokuvalista.lista.containsKey(leffa)) {
             System.out.println("Elokuvaa ei listalla");
         } else {
-                if (vuokraaja.getVuokralla().contains(leffa)) {
+                if (vuokraaja.getVuokralla().containsKey(leffa)) {
                     System.out.println("Asiakas on jo vuokrannut elokuvan.");            
                 } else {
 
@@ -60,10 +60,26 @@ public class Kontrolleri {
                         System.out.println("Varastossa ei jäljellä tätä elokuvaa tässä formaatissa. Tilaa lisää.");
                     } else {
                         elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);
-                        vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi());
+                        vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi(),levylaatu);
                         System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
                     }
                 }
+        }
+    }
+    
+    public boolean palautaLeffa(String asiakas, String leffa) {
+        if (asiakaslista.lista.containsKey(asiakas)) {
+            return false;
+        } else {
+            Asiakas vuokraaja = asiakaslista.lista.get(asiakas);
+            if (!vuokraaja.getVuokralla().containsKey(leffa)) {
+                System.out.println("Asiakkaalla ei ole vuokrassa tätä elokuvaa.");
+            } else {
+                vuokraaja.palautaElokuva(leffa);
+                elokuvalista.getElokuva(leffa).lisaaLeffoja(vuokraaja.getVuokralla().get(leffa), 1);
+                System.out.println("Elokuva " + leffa + " palautettu hyllyyn.");
+            }
+            return true;
         }
     }
     
@@ -83,6 +99,10 @@ public class Kontrolleri {
     
     public void tulostaLeffalista() {
         elokuvalista.tulostaLista();
+    }
+    
+    public HashMap<String,Asiakas> getAsiakaslista() {
+        return this.asiakaslista.lista;
     }
     
     public void lisaaKarkkia(String nimi, int maara) {
