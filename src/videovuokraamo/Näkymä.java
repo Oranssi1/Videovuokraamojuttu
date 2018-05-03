@@ -61,20 +61,24 @@ public class Näkymä {
                 controller.myyKarkkia(animi, enimi, maara);
                 break;
             case "4":
-                System.out.println("KANTA-ASIAKASTOIMINTA");
+                //Kanta-asiakastoiminta
                 break;
             case "5":
+                //Asiakkaan lisäys
                 System.out.println("Anna asiakkaan nimi: ");
                 controller.lisaaAsiakas(lukija.nextLine());
                 break;
             case "6":
+                //Tulostaa asiakkaan vuokraukset listana
                 System.out.println("Anna asiakkaan nimi: ");
                 controller.tulostaAsiakkaanvuokratut(lukija.nextLine());
                 break;
             case "7":
+                //Tulostaa asiakkaat listana
                 controller.tulostaAsiakkaat();
                 break;                
             case "0":
+                //Palaa alkuun
                 break;
         }
         System.out.println("");
@@ -86,6 +90,7 @@ public class Näkymä {
         String Nimi;
         switch (lukija.nextLine()) {
             case "1":
+                //Lisää nimikkeen elokuvalistaan
                 System.out.print("Elokuvan nimi: ");
                 Nimi = lukija.nextLine();
                 System.out.print("Elokuvan julkaisuvuosi: ");
@@ -93,11 +98,13 @@ public class Näkymä {
                 controller.lisääLeffalistaan(Nimi, vuosi);
                 break;
             case "2":
+                //Poistaa nimikkeen elokuvalistasta
                 System.out.println("Elokuvan nimi: ");
                 Nimi = lukija.nextLine();
                 controller.poistaLeffalistalta(Nimi);
                 break;
             case "3":
+                //Lisää karkityypin karkkihyllyyn
                 System.out.println("Karkin tuotenimi: ");
                 Nimi = lukija.nextLine();
                 System.out.println("Määrä grammoissa: ");
@@ -105,17 +112,21 @@ public class Näkymä {
                 controller.lisaaKarkkia(Nimi, maara);
                 break;
             case "4":
+                //Tulostaa yhden elokuvan tiedot
                 System.out.println("Elokuvan nimi: ");
                 Nimi = lukija.nextLine();
                 System.out.println(controller.elokuvanTiedot(Nimi));
                 break;
             case "5":
+                //Tulostaa elokuvat listana
                 controller.tulostaLeffalista();
                 break;
             case "6":
+                //Tulostaa karkit listana
                 controller.tulostaKarkit();
                 break;
             case "0":
+                //Paluu alkuun
                 break;
         }
         System.out.println("");
@@ -130,8 +141,10 @@ public class Näkymä {
         } while (valinta != 1 && valinta != 2);
         
         if (valinta ==1 ) {
+            //Asiakaspalvelumenu
             valintaAsiakas();
         } else if (valinta == 2) {
+            //Katalogimenu
             valintaKatalogi();
         }
         System.out.println("");

@@ -29,15 +29,14 @@ public class Karkkilista {
         }
     }
     
-    public boolean vahennaKarkkia(String nimi, int maara) {
-        System.out.println(this.lista.get(nimi));
-        System.out.println(this.lista.get(nimi) - maara);
-        System.out.println("TOITOITOI");
-        if (lista.containsKey(nimi) && lista.get(nimi) >= maara) {
-            this.lista.put(nimi, this.lista.get(nimi) - maara);
-            return true;
+    public void vahennaKarkkia(String nimi, int maara) {
+        if (!lista.containsKey(nimi)) {
+            System.out.println("Tätä karkkia ei ole olemassa.");
+        } else if (lista.get(nimi) < maara) {
+            System.out.println("Karkkia ei ole tarpeeksi.");
         } else {
-            return false;
+            this.lista.put(nimi, this.lista.get(nimi) - maara);
+            System.out.println("Myynti suoritettu. " + nimi + "-karkkia jäljellä " + lista.get(nimi) + " grammaa.");
         }
     }
     

@@ -46,6 +46,7 @@ public class Kontrolleri {
         if (!asiakkaat.containsKey(asiakas)) {
             System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
             this.lisaaAsiakas(asiakas);
+            System.out.println("");
         }
         Asiakas vuokraaja = asiakkaat.get(asiakas);
         
@@ -107,6 +108,13 @@ public class Kontrolleri {
     }
     
     public void myyKarkkia(String asiakas, String karkki, int maara) {
+        HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
+        asiakas = asiakas.toUpperCase();
+        if (!asiakkaat.containsKey(asiakas)) {
+            System.out.println("Asiakasta ei asiakaslistalla. Lisätään...");
+            this.lisaaAsiakas(asiakas);
+            System.out.println("");
+        }
         this.karkkilista.vahennaKarkkia(karkki, maara);
     }
     
