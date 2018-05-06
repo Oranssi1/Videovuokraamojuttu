@@ -43,7 +43,6 @@ public class Asiakas {
             return false;
         } else {
             this.vuokralla.put(elokuva, levylaatu);
-            System.out.println(vuokralla);
             return true;
         }
     }

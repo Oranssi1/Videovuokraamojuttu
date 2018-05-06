@@ -50,7 +50,8 @@ public class Elokuvalista {
             while (iteraattori.hasNext()) {
                 String nimi = iteraattori.next().toString();
                 System.out.println(">" + nimi + " /Julkaisuvuosi: " + lista.get(nimi).getVuosi() + 
-                        "/ Hyllyssä: *Blu-ray* - " + lista.get(nimi).getLukumaara(1) + " *DVD* - " + lista.get(nimi).getLukumaara(2));
+                        "/ Hyllyssä: *Blu-ray* - " + lista.get(nimi).getLukumaara(1) + " *DVD* - " + lista.get(nimi).getLukumaara(2) +
+                        "/ Vuokralla: *Blu-ray* - " + lista.get(nimi).getBDVuokralla() + " *DVD* - " + lista.get(nimi).getDVDVuokralla());
             }        
         } else {
             System.out.println("Hyllyssä ei ole elokuvia.");

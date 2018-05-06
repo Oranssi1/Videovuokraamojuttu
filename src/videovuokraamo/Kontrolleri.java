@@ -78,14 +78,31 @@ public class Kontrolleri {
         }
     }
     
-    public void palautaLeffa(String asiakas, String leffa) {
+    public boolean palautaLeffa(String asiakas, String leffa) {
         Asiakas vuokraaja = asiakaslista.lista.get(asiakas);
         if (!vuokraaja.getVuokralla().containsKey(leffa)) {
             System.out.println("Asiakkaalla ei ole vuokrassa tätä elokuvaa.");
+            return false;
         } else {
             elokuvalista.getElokuva(leffa).lisaaLeffoja(vuokraaja.getVuokralla().get(leffa), 1);
             System.out.println("Elokuva " + leffa + " palautettu hyllyyn.");
             vuokraaja.palautaElokuva(leffa);
+            return true;
+        }
+    }
+    
+    public void arvosana(String leffa, int arvo) {
+            elokuvalista.getElokuva(leffa).lisaaArvosana(arvo);
+    }
+    
+    public void lisaaLeffojaHyllyyn(String leffa, int BD, int DVD) {
+        if (BD < 0 || DVD < 0) {
+            System.out.println("Negatiivista määrää leffoja ei voi tilata.");
+        } else if (this.elokuvalista.lista.containsKey(leffa)) {
+            this.elokuvalista.lista.get(leffa).lisaaHyllyyn(BD, DVD);
+            System.out.println("Elokuvat tuotu hyllyyn.");
+        } else {
+            System.out.println("Elokuvaa ei listalla.");
         }
     }
     

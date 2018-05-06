@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Näkymä {
     Scanner lukija = new Scanner(System.in);
     Teksti tekstit = new Teksti();
+    Kassa kassa = new Kassa();
     Kontrolleri controller;
     
     public Näkymä (Kontrolleri controller) {
@@ -35,6 +36,8 @@ public class Näkymä {
                 System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
                 levylaatu = Integer.parseInt(lukija.nextLine());
                 controller.vuokraaLeffa(animi, enimi, levylaatu);
+                kassa.vuokraus(levylaatu);
+                System.out.println(kassa.getSaldo());
                 break;
             case "2":
                 //Elokuvan palautustoiminta
@@ -46,7 +49,15 @@ public class Näkymä {
                     controller.tulostaAsiakkaanvuokratut(animi);
                     System.out.println("Anna elokuvan nimi: ");
                     enimi = lukija.nextLine().toUpperCase();
-                    controller.palautaLeffa(animi, enimi);
+                    if (controller.palautaLeffa(animi, enimi)) {
+                        System.out.println("Asiakkaan arvosana elokuvalle (1-5)?\n"
+                                + "0 jos asiakas ei halua antaa arvosanaa.");
+                        int numero = Integer.parseInt(lukija.nextLine());
+                        if (numero >= 1 && numero <= 5) {
+                            System.out.println("asdasd");
+                            controller.arvosana(enimi, numero);                            
+                        }
+                    }
                 }
                 break;
             case "3":
@@ -59,6 +70,8 @@ public class Näkymä {
                 System.out.println("Kuinka paljon? (grammoissa)");
                 int maara = Integer.parseInt(lukija.nextLine());
                 controller.myyKarkkia(animi, enimi, maara);
+                kassa.karkinmyynti(maara);
+                System.out.println(kassa.getSaldo());
                 break;
             case "4":
                 //Asiakkaan lisäys
@@ -103,6 +116,16 @@ public class Näkymä {
                 controller.poistaLeffalistalta(Nimi);
                 break;
             case "3":
+                //Lisää elokuvia hyllyyn.
+                System.out.println("Elokuvan nimi: ");
+                Nimi = lukija.nextLine().toUpperCase();
+                System.out.println("Montako Blu-ray-kopiota tilataan: ");
+                int BD = Integer.parseInt(lukija.nextLine());
+                System.out.println("Montako DVD-kopiota tilataan: ");
+                int DVD = Integer.parseInt(lukija.nextLine());
+                controller.lisaaLeffojaHyllyyn(Nimi, BD, DVD);
+                break;
+            case "4":
                 //Lisää karkityypin karkkihyllyyn
                 System.out.println("Karkin tuotenimi: ");
                 Nimi = lukija.nextLine().toUpperCase();
@@ -110,17 +133,17 @@ public class Näkymä {
                 int maara = Integer.parseInt(lukija.nextLine());
                 controller.lisaaKarkkia(Nimi, maara);
                 break;
-            case "4":
+            case "5":
                 //Tulostaa yhden elokuvan tiedot
                 System.out.println("Elokuvan nimi: ");
                 Nimi = lukija.nextLine().toUpperCase();
                 System.out.println(controller.elokuvanTiedot(Nimi));
                 break;
-            case "5":
+            case "6":
                 //Tulostaa elokuvat listana
                 controller.tulostaLeffalista();
                 break;
-            case "6":
+            case "7":
                 //Tulostaa karkit listana
                 controller.tulostaKarkit();
                 break;
@@ -131,6 +154,38 @@ public class Näkymä {
         System.out.println("");
     }
     
+    public void valintaHinnasto(){
+        tekstit.vaihtoehdot(3);
+        lukija.nextLine();
+        double hinta;
+        
+        switch(lukija.nextLine()){
+            case "1":
+                System.out.println("Blu-Rayn vuokrahinta on: " + kassa.getBDvuokra());
+                System.out.println("DVD:n vuokrauhinta on : " + kassa.getDVDvuokra());
+                System.out.println("Karkin hinta €/100g on : " + kassa.getKarkkihinta());
+                System.out.println("Kassasta löytyy rahaa : " + kassa.getSaldo());
+                break;
+            case "2":
+                System.out.println("BR vuokrahinta on tällä hetkellä : " + kassa.getBDvuokra()+ "\nAnna uusi hinta.");
+                hinta = lukija.nextDouble();
+                kassa.setBDhinta(hinta);
+                break;
+            case "3":
+                System.out.println("DVD vuokrahinta on tällä hetkellä : " + kassa.getDVDvuokra()+ "\nAnna uusi hinta.");
+                hinta = lukija.nextDouble();
+                kassa.setDVDhinta(hinta);
+                break;
+            case "4":
+                System.out.println("Karkkien hinta €/100g on tällä hetkellä : " + kassa.getKarkkihinta() + "\nAnna karkien uusi hinta.");
+                hinta = lukija.nextDouble();
+                kassa.setKarkkihinta(hinta);
+                break;
+        }
+        System.out.println("");
+        
+    }
+    
     public void valinta() {
         int valinta = 0;
         tekstit.tervehdys();
@@ -138,7 +193,7 @@ public class Näkymä {
             tekstit.vaihtoehdot(0);
             valinta = lukija.nextInt();
             System.out.println("");
-        } while (valinta != 1 && valinta != 2);
+        } while (valinta != 1 && valinta != 2 && valinta != 3);
         
         if (valinta ==1 ) {
             //Asiakaspalvelumenu
@@ -146,6 +201,9 @@ public class Näkymä {
         } else if (valinta == 2) {
             //Katalogimenu
             valintaKatalogi();
-        }
+        } else if (valinta == 3) {
+            //Kassa/hinnasto
+            valintaHinnasto();
+        }    
     }
 }

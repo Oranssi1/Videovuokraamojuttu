@@ -20,7 +20,7 @@ public class Teksti {
         switch (i) {
             case 0:
                 System.out.println("Valitse numero ja paina enter.\n1. Asiakaspalvelu\n"
-                    + "2. Katalogi");
+                    + "2. Katalogi\n" + "3. Hinnasto");
                 break;
             case 1:
                 System.out.println("1. Vuokraa\n2. Palauta\n3. Osta karkkia\n"
@@ -28,11 +28,14 @@ public class Teksti {
                         + "6. Lista asiakkaista\n0. Alkuun");    
                 break;
             case 2:
-                System.out.println("1. Lisää elokuva\n2. Poista elokuva\n"
-                    + "3. Lisää karkkia\n4. Elokuvan tiedot\n5. Lista elokuvista\n"
-                    + "6. Lista karkeista\n0. Alkuun");
+                System.out.println("1. Lisää elokuva\n2. Poista elokuva\n3. Lisää hyllyyn\n"
+                    + "4. Lisää karkkia\n5. Elokuvan tiedot\n6. Lista elokuvista\n"
+                    + "7. Lista karkeista\n0. Alkuun");
+                break;
+            case 3:
+                System.out.println("1. Tulosta hinnasto\n2. Määritä Blu-rayn vuokrahinta\n" 
+                    + "3. Määritä DVD:n vuokrauhinta\n4. Määritä karkkien kilohinta(€/100g) ");
                 break;
         }
     }
-
 }
