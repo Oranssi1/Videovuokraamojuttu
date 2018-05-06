@@ -16,6 +16,7 @@ public class Kontrolleri {
     private Elokuvalista elokuvalista = new Elokuvalista();
     private Asiakaslista asiakaslista = new Asiakaslista();
     private Karkkilista karkkilista = new Karkkilista();
+    private Kassa kassa = new Kassa();
     
     public Kontrolleri() {
         näky = new Näkymä(this);
@@ -65,7 +66,9 @@ public class Kontrolleri {
                     } else {
                         elokuvalista.lista.get(leffa).vahennaLeffoja(levylaatu, 1);
                         vuokraaja.vuokraaElokuva(elokuvalista.lista.get(leffa).getNimi(),levylaatu);
+                        kassa.vuokraus(levylaatu);
                         System.out.println("Elokuva " + elokuvalista.lista.get(leffa).getNimi() + " vuokrattu asiakkaalle " + vuokraaja.getNimi() + ".");
+                        System.out.println("Kassassa on rahaa " + kassa.getSaldo() + " euroa.");
                     }
                     if (vuokraaja.getPisteet() > 300) {
                         System.out.println("Asiakas saa 5 euroa alennusta 300 kanta-asiakaspisteellään!");
@@ -140,12 +143,42 @@ public class Kontrolleri {
         }
         Asiakas ostaja = asiakaslista.getAsiakas(asiakas);
         this.karkkilista.vahennaKarkkia(karkki, maara);
+        kassa.karkinmyynti(maara);
         ostaja.lisaaPisteet(maara/2);
         System.out.println("Myynti suoritettu. \nAsiakas ansaitsi " + (maara/2) + " kanta-asiakaspistettä.");
+        System.out.println("Kassassa on rahaa " + kassa.getSaldo() + " euroa.");
     }
     
     public void tulostaKarkit() {
         karkkilista.tulostaLista();
+    }
+    
+    public double getBDhinta() {
+        return kassa.getBDvuokra();
+    }
+    
+    public void setBDhinta(double hinta) {
+        kassa.setBDhinta(hinta);
+    }
+    
+    public double getDVDhinta() {
+        return kassa.getDVDvuokra();
+    }
+
+    public void setDVDhinta(double hinta) {
+        kassa.setDVDhinta(hinta);
+    }
+    
+    public double getKarkkihinta() {
+        return kassa.getKarkkihinta();
+    }    
+    
+    public void setKarkkihinta(double hinta) {
+        kassa.setKarkkihinta(hinta);
+    }
+    
+    public double getSaldo() {
+        return kassa.getSaldo();
     }
     
     public void operoi() {

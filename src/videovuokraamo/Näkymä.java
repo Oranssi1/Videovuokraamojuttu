@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Näkymä {
     Scanner lukija = new Scanner(System.in);
     Teksti tekstit = new Teksti();
-    Kassa kassa = new Kassa();
     Kontrolleri controller;
     
     public Näkymä (Kontrolleri controller) {
@@ -36,8 +35,6 @@ public class Näkymä {
                 System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
                 levylaatu = Integer.parseInt(lukija.nextLine());
                 controller.vuokraaLeffa(animi, enimi, levylaatu);
-                kassa.vuokraus(levylaatu);
-                System.out.println(kassa.getSaldo());
                 break;
             case "2":
                 //Elokuvan palautustoiminta
@@ -70,8 +67,6 @@ public class Näkymä {
                 System.out.println("Kuinka paljon? (grammoissa)");
                 int maara = Integer.parseInt(lukija.nextLine());
                 controller.myyKarkkia(animi, enimi, maara);
-                kassa.karkinmyynti(maara);
-                System.out.println(kassa.getSaldo());
                 break;
             case "4":
                 //Asiakkaan lisäys
@@ -161,25 +156,22 @@ public class Näkymä {
         
         switch(lukija.nextLine()){
             case "1":
-                System.out.println("Blu-Rayn vuokrahinta on: " + kassa.getBDvuokra());
-                System.out.println("DVD:n vuokrauhinta on : " + kassa.getDVDvuokra());
-                System.out.println("Karkin hinta €/100g on : " + kassa.getKarkkihinta());
-                System.out.println("Kassasta löytyy rahaa : " + kassa.getSaldo());
+                System.out.println("Blu-Rayn vuokrahinta on: " + controller.getBDhinta());
+                System.out.println("DVD:n vuokrauhinta on : " + controller.getDVDhinta());
+                System.out.println("Karkin hinta €/100g on : " + controller.getKarkkihinta());
+                System.out.println("Kassasta löytyy rahaa : " + controller.getSaldo());
                 break;
             case "2":
-                System.out.println("BR vuokrahinta on tällä hetkellä : " + kassa.getBDvuokra()+ "\nAnna uusi hinta.");
-                hinta = lukija.nextDouble();
-                kassa.setBDhinta(hinta);
+                System.out.println("BR vuokrahinta on tällä hetkellä : " + controller.getBDhinta() + "\nAnna uusi hinta.");
+                controller.setBDhinta(lukija.nextDouble());
                 break;
             case "3":
-                System.out.println("DVD vuokrahinta on tällä hetkellä : " + kassa.getDVDvuokra()+ "\nAnna uusi hinta.");
-                hinta = lukija.nextDouble();
-                kassa.setDVDhinta(hinta);
+                System.out.println("DVD vuokrahinta on tällä hetkellä : " + controller.getDVDhinta() + "\nAnna uusi hinta.");
+                controller.setDVDhinta(lukija.nextDouble());
                 break;
             case "4":
-                System.out.println("Karkkien hinta €/100g on tällä hetkellä : " + kassa.getKarkkihinta() + "\nAnna karkien uusi hinta.");
-                hinta = lukija.nextDouble();
-                kassa.setKarkkihinta(hinta);
+                System.out.println("Karkkien hinta €/100g on tällä hetkellä : " + controller.getKarkkihinta() + "\nAnna karkien uusi hinta.");
+                controller.setKarkkihinta(lukija.nextDouble());
                 break;
         }
         System.out.println("");
