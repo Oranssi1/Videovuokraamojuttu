@@ -32,9 +32,13 @@ public class Näkymä {
                 animi = lukija.nextLine().toUpperCase();
                 System.out.println("Anna elokuvan nimi: ");
                 enimi = lukija.nextLine().toUpperCase();
-                System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
-                levylaatu = Integer.parseInt(lukija.nextLine());
-                controller.vuokraaLeffa(animi, enimi, levylaatu);
+                if (!controller.onkoElokuvaa(enimi)) {
+                    System.out.println("Elokuvaa ei ole listalla.");
+                } else {
+                    System.out.println("Paina 1 jos vuokraat Blu-Raynä\nPaina 2 jos vuokraat DVD:nä");
+                    levylaatu = Integer.parseInt(lukija.nextLine());
+                    controller.vuokraaLeffa(animi, enimi, levylaatu);
+                }
                 break;
             case "2":
                 //Elokuvan palautustoiminta
@@ -166,11 +170,11 @@ public class Näkymä {
                 System.out.println("Kassasta löytyy rahaa : " + controller.getSaldo());
                 break;
             case "2":
-                System.out.println("BR vuokrahinta on tällä hetkellä : " + controller.getBDhinta() + "\nAnna uusi hinta.");
+                System.out.println("Blu-rayn vuokrahinta on tällä hetkellä : " + controller.getBDhinta() + "\nAnna uusi hinta.");
                 controller.setBDhinta(lukija.nextDouble());
                 break;
             case "3":
-                System.out.println("DVD vuokrahinta on tällä hetkellä : " + controller.getDVDhinta() + "\nAnna uusi hinta.");
+                System.out.println("DVD:n vuokrahinta on tällä hetkellä : " + controller.getDVDhinta() + "\nAnna uusi hinta.");
                 controller.setDVDhinta(lukija.nextDouble());
                 break;
             case "4":

@@ -45,6 +45,13 @@ public class Kontrolleri {
         System.out.println("Kanta-asiakaspisteitä: " + pisteet + " pistettä.");
     }
     
+    public boolean onkoElokuvaa(String leffa) {
+        if (elokuvalista.lista.containsKey(leffa)) {
+            return true;
+        }
+        return false;
+    }
+    
     public void vuokraaLeffa(String asiakas, String leffa, int levylaatu) {
         HashMap<String, Asiakas> asiakkaat = asiakaslista.getLista();
         if (!asiakkaat.containsKey(asiakas)) {
