@@ -118,8 +118,12 @@ public class Kontrolleri {
         elokuvalista.poistaListalta(nimi);
     }
     
-    public String elokuvanTiedot(String nimi) {
-        return this.elokuvalista.getNimi(nimi).toString();
+    public void elokuvanTiedot(String nimi) {
+        if (!elokuvalista.lista.containsKey(nimi)) {
+            System.out.println("Elokuvaa ei listalla");
+        } else {
+            System.out.println(this.elokuvalista.getNimi(nimi).toString()); 
+        }
     }
     
     public void tulostaLeffalista() {
@@ -179,6 +183,10 @@ public class Kontrolleri {
     
     public double getSaldo() {
         return kassa.getSaldo();
+    }
+    
+    public int getKarkkilistaPituus() {
+        return karkkilista.getListaPituus();
     }
     
     public void operoi() {

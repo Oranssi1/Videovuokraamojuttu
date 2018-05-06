@@ -23,7 +23,7 @@ public class Teksti {
                     + "2. Katalogi\n" + "3. Hinnasto");
                 break;
             case 1:
-                System.out.println("1. Vuokraa\n2. Palauta\n3. Osta karkkia\n"
+                System.out.println("1. Vuokraa\n2. Palauta\n3. Myy karkkia\n"
                     + "4. Lisää asiakas\n5. Asiakkaan tiedot\n"
                         + "6. Lista asiakkaista\n0. Alkuun");    
                 break;
@@ -33,8 +33,8 @@ public class Teksti {
                     + "7. Lista karkeista\n0. Alkuun");
                 break;
             case 3:
-                System.out.println("1. Tulosta hinnasto\n2. Määritä Blu-rayn vuokrahinta\n" 
-                    + "3. Määritä DVD:n vuokrauhinta\n4. Määritä karkkien kilohinta(€/100g) ");
+                System.out.println("1. Tulosta hinnasto ja kassa\n2. Määritä Blu-rayn vuokrahinta\n" 
+                    + "3. Määritä DVD:n vuokrahinta\n4. Määritä karkkien hinta(€/100g) ");
                 break;
         }
     }

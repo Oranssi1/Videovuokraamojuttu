@@ -59,14 +59,18 @@ public class Näkymä {
                 break;
             case "3":
                 //Karkin ostamistoiminta
-                System.out.println("Anna asiakkaan nimi:");
-                animi = lukija.nextLine().toUpperCase();
-                controller.tulostaKarkit();
-                System.out.println("Mitä karkkia asiakas ostaa?");
-                enimi = lukija.nextLine().toUpperCase();
-                System.out.println("Kuinka paljon? (grammoissa)");
-                int maara = Integer.parseInt(lukija.nextLine());
-                controller.myyKarkkia(animi, enimi, maara);
+                if (controller.getKarkkilistaPituus() <= 0) {
+                    System.out.println("Kaupassa ei ole karkkia. Hae lisää katalogista.");
+                } else {
+                    System.out.println("Anna asiakkaan nimi:");
+                    animi = lukija.nextLine().toUpperCase();
+                    controller.tulostaKarkit();
+                    System.out.println("Mitä karkkia asiakas ostaa?");
+                    enimi = lukija.nextLine().toUpperCase();
+                    System.out.println("Kuinka paljon? (grammoissa)");
+                    int maara = Integer.parseInt(lukija.nextLine());
+                    controller.myyKarkkia(animi, enimi, maara);
+                }
                 break;
             case "4":
                 //Asiakkaan lisäys
@@ -132,7 +136,7 @@ public class Näkymä {
                 //Tulostaa yhden elokuvan tiedot
                 System.out.println("Elokuvan nimi: ");
                 Nimi = lukija.nextLine().toUpperCase();
-                System.out.println(controller.elokuvanTiedot(Nimi));
+                controller.elokuvanTiedot(Nimi);
                 break;
             case "6":
                 //Tulostaa elokuvat listana
